@@ -51,15 +51,12 @@ state = {
      return (
          <div className="directory-menu">
             
-            {this.state.sections.map(({title, imageUrl,id, size}) => 
-            // {} and return are removed here by since we use => and ()
+            {this.state.sections.map(({id, ...otherSectionProps}) => 
+            // {} ->object literal and 
+            // return -> key are removed <=> since we use => and ()
                  (
-                    <MenuItem
-                        key={id} 
-                        title={title}
-                        size={size} 
-                        imageUrl={imageUrl}
-                    />
+                    // <MenuItem key={id} title={title} size={size} imageUrl={imageUrl}/>
+                     <MenuItem key={id} {...otherSectionProps}/>
                  )
             )}
          </div>
