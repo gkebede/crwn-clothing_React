@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+//import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton  from '../custom-button/custom-button.component';
@@ -20,23 +20,22 @@ class SignUp extends React.Component {
 
 
     handleSubmit =  async  event => {
-
-        const {displayName, email, password, confirmPassword} = this.state;
         
         event.preventDefault();
+
+        const {displayName, email, password, confirmPassword} = this.state;
         if(password !== confirmPassword){
             alert('password don\'t much');
             return;
         }
 
         try {
+             //  const auth = getAuth();
+            // const {user} = await createUserWithEmailAndPassword(auth, email.trim(), password)
 
-        const auth = getAuth();
-       const {user} = await createUserWithEmailAndPassword(auth, email.trim(), password)
-
-          //  const {user} = await auth.createUserWithEmailAndPassword(email.trim(), password)
-                         
-              await createUserProfileDocument({user}, {displayName});
+            const {user} = await auth.createUserWithEmailAndPassword(email.trim(), password)
+            //  {displayName: displayName}  and b/c of {user} displayName was empty
+              await createUserProfileDocument(user, {displayName});
 
                 this.setState({
                 displayName: '',
@@ -72,7 +71,7 @@ class SignUp extends React.Component {
             <FormInput 
                 type="text"
                 name="displayName"
-                value={displayName.trim()}
+                value={displayName}
                 onChange={this.handleChange}
                 label="Display Name"
                 required
@@ -89,14 +88,14 @@ class SignUp extends React.Component {
                 handleChange={this.handleChange}
                 name="password"
                 type="password" 
-                value={password.trim()} 
+                value={password} 
                 label="password"
                 required
             />
             <FormInput 
                 type="password"
                 name="confirmPassword"
-                value={confirmPassword.trim()}
+                value={confirmPassword}
                 onChange={this.handleChange}
                 label="Confirm Password"
                 required

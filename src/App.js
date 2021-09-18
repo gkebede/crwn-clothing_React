@@ -13,7 +13,6 @@ class App extends React.Component {
  // state = { currentUser: null };
 
 
-
   unSubscribeFromAuth = null;
 
 
@@ -51,7 +50,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header/>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopePage} />

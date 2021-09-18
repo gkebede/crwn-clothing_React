@@ -2,12 +2,14 @@ import React from 'react';
 
 import './form-input.style.scss'
 
-const FormInput = ({handleChange,type,  label, ...otherProps}) => {
+const FormInput = ({handleChange,label, ...otherProps}) => {
    return (<div className="group">
         <input
-         type={type}
+       //  type ={type} I had issues may be b/c of this type here
          className="form-input"
          onChange= {handleChange}
+         {...otherProps}
+
          />
          
          {
