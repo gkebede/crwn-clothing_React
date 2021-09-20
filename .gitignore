@@ -1,5 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+    // ---PLASE READ --
+# // const mapStateToProps = state => ({
+# // currentUser: state.user.currentUser
+# //})
 
+# //state  <=> the whole redux store object
+# //.user  <=> the key of the reducer from the root reducer
+# //.currentUser <=> the object we want to accesse from the reducer or retrun    OBJECT
 # dependencies
 /node_modules
 /.pnp

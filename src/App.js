@@ -11,8 +11,9 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import {setUserAction} from './redux/user/user.actions';
 class App extends React.Component {
  // state = { currentUser: null };
+  state = { hide: true };
 
-
+ 
   unSubscribeFromAuth = null;
 
 
@@ -50,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header/>
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopePage} />

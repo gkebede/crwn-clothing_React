@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 
 import {ReactComponent as Logo} from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import './header.style.scss';
 
 //  {currentUser} = this.props;
-const Header = ({currentUser}) => {
+const Header = ({currentUser,  hidden}) => {
 
-    console.log('Current user is ' +currentUser)
     return (
     <div className='header'>
         
@@ -27,17 +28,37 @@ const Header = ({currentUser}) => {
             {currentUser ? ( 
               <div className='option' onClick={() => auth.signOut()}>Sign Out</div>
               ):(
-                              <Link className="option" to="/signin">Sign In</Link>
+                              <Link className="option" to="/signin">
+                                  Sign In
+                                  </Link>
                          
          )}
          
+        <CartIcon/>
+
         </div>
-    </div>
+            {
+                hidden? null : <CartDropdown/>
+                
+            }
+       </div>
     );
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+    // ---PLASE READ --
+// const mapStateToProps = state => ({
+// currentUser: state.user.currentUser
+//})
+
+//state  <=> the whole redux store object
+//.user  <=> the key of the reducer from the root reducer
+//.currentUser <=> the object we want to accesse from the reducer or retrun    OBJECT
+
+
+const mapStateToProps = ({user:{currentUser}, cart: {hidden}}) => ({
+    currentUser: currentUser,
+    hidden: hidden
 })
+
 
 export default connect(mapStateToProps)(Header);
