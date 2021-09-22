@@ -8,9 +8,8 @@ export const addItemToCart = (cartItems, catItemToAdd) => {
     if(existingCartItem)  {
 
         return cartItems.map(cartItem => {
-
+                // if (cartItem.id === catItemToAdd.id) {return //...} else{cartItem}
             return cartItem.id === catItemToAdd.id ? {
-
                 ...cartItem, quantity: cartItem.quantity + 1
             } : cartItem
 

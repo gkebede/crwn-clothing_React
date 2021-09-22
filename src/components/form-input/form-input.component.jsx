@@ -5,7 +5,8 @@ import './form-input.style.scss'
 const FormInput = ({handleChange,label, ...otherProps}) => {
    return (<div className="group">
         <input
-       //  type ={type} I had issues may be b/c of this type here
+       //  type ={type} I had  issues may be b/c of this type here
+       // or may be I did otherProps instead of ...otherProps
          className="form-input"
          onChange= {handleChange}
          {...otherProps}
