@@ -5,7 +5,7 @@ import SHOP_DATA from './shop.data'
 
 class ShopePage extends React.Component {
     
-
+     // INITIAL_STATE  === state
         state = {
             collections: SHOP_DATA
         }

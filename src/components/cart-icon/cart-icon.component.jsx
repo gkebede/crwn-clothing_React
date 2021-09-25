@@ -2,6 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import { createStructuredSelector } from 'reselect';
 
 
 import {toggleCartHidden} from '../../redux/cart/cart.action';
@@ -23,13 +24,16 @@ const CartIcon = ({togglCartHiddenChanges, itemCount})  => {
 
 
 
-const mapStateToProps = (state) => {
-    console.log('been called')
-    return  {
-        itemCount: selectCartItemCount(state)
-    } 
-    
-}
+const mapStateToProps = createStructuredSelector({
+
+     itemCount: selectCartItemCount 
+});
+// const mapStateToProps = (state) => {
+//     // console.log('been called')
+//     return  {
+//         itemCount: selectCartItemCount(state)
+//     } 
+//}
 
 
 
