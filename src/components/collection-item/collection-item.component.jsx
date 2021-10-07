@@ -26,7 +26,11 @@ const CollectionItem = ({ item, addItem }) => {
       }
 
       
+<<<<<<< HEAD
   // const mapDispatchToProps = dispatch => ({
+=======
+  const mapDispatchToProps = dispatch => ({
+>>>>>>> a5946c2fc1f0dd71eee4b3232b287e84c221c196
 
   //    addItem : item => {dispatch(addItem(item))}
   // })

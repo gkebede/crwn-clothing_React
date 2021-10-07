@@ -6,7 +6,11 @@ import { withRouter } from 'react-router';
 import CustomButton  from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
 import {selectCartItems} from '../../redux/cart/cart.selectors';
+<<<<<<< HEAD
 // import {selectCartHidden} from '../../redux/cart/cart.selectors';
+=======
+import {selectCartHidden} from '../../redux/cart/cart.selectors';
+>>>>>>> a5946c2fc1f0dd71eee4b3232b287e84c221c196
 import {toggleCartHidden} from '../../redux/cart/cart.action'
 import './cart-dropdown.style.scss';
 
