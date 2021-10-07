@@ -13,6 +13,8 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import {setUserAction} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
+import CollectionPage from "./pages/collection/collection.component";
+
 
 class App extends React.Component {
  // state = { currentUser: null };
@@ -54,12 +56,15 @@ class App extends React.Component {
     this.unSubscribeFromAuth();
   }
   render() {
+    // component display using Route has 1-Subject 2-match and 3-pathName
     return (
       <div>
         <Header />
         <Switch>
+          
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopePage} />
+          <Route  path="/shop" component={ShopePage} />
+          <Route exact path="/shop/:collectionId" component={CollectionPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin"  render={ () => {
           
