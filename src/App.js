@@ -13,11 +13,7 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import {setUserAction} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
-<<<<<<< HEAD
-import CollectionPage from "./pages/collection/collection.component";
 
-=======
->>>>>>> a5946c2fc1f0dd71eee4b3232b287e84c221c196
 
 class App extends React.Component {
  // state = { currentUser: null };
@@ -66,12 +62,7 @@ class App extends React.Component {
         <Switch>
           
           <Route exact path="/" component={HomePage} />
-<<<<<<< HEAD
           <Route  path="/shop" component={ShopePage} />
-          <Route exact path="/shop/:collectionId" component={CollectionPage} />
-=======
-          <Route exact path="/shop" component={ShopePage} />
->>>>>>> a5946c2fc1f0dd71eee4b3232b287e84c221c196
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin"  render={ () => {
           

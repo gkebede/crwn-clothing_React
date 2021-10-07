@@ -1,11 +1,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-<<<<<<< HEAD
 // import _ from 'lodash';
-=======
-import _ from 'lodash';
->>>>>>> a5946c2fc1f0dd71eee4b3232b287e84c221c196
 import { createStructuredSelector } from 'reselect';
 
 

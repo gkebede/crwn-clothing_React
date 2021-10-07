@@ -3,14 +3,14 @@ import _ from "lodash";
 
 const selectShop = state => state.shop;
 
-const COLLECTION_ID_MAP = {
-// kinde of enum
-        hats: 1,
-        sneakers: 2,
-        jackets: 3,
-        womens: 4,
-        mens: 5,
-}
+// const COLLECTION_ID_MAP = {
+// // kinde of enum
+//         hats: 1,
+//         sneakers: 2,
+//         jackets: 3,
+//         womens: 4,
+//         mens: 5,
+// }
 
 
 
@@ -19,14 +19,15 @@ export const selectCollections = createSelector(
  
     [selectShop],
 
-    shop => shop.collection
+    shop => shop.collections
+
 )
 
 export const selectCollectionsForPreview = createSelector(
      [selectCollections],
      
      collections => Object.keys(collections).map((key)=>{
-          return collections[key];
+          return collections[key]
      })
 
 );
