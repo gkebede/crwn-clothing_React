@@ -5,6 +5,7 @@ import {createStructuredSelector} from 'reselect';
 
 
 import "./App.css";
+import ContactUs from "./components/contact.component";
 import CheckoutPage from './pages/checkout/checkout.component';
 import HomePage from "./pages/homepage/homepage.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
@@ -63,6 +64,7 @@ class App extends React.Component {
           
           <Route exact path="/" component={HomePage} />
           <Route  path="/shop" component={ShopePage} />
+          <Route  path="/contact" component={ContactUs} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin"  render={ () => {
           

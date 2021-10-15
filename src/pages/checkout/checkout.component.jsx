@@ -43,7 +43,7 @@ const CheckoutPage = ({cartItems, total}) => (
     }
 
 
-    <div className="total">TOTAL: {total} </div>
+    <div className="total">TOTAL: {`$${total}`} </div>
 
     <div className='test-warning'>
       <h4> *Please use the following credit cards for payment*</h4> 
