@@ -27,8 +27,7 @@ const config = {
 
 firebase.initializeApp(config);
 
-export const auth = firebase.auth();
-export const db = firebase.firestore();
+
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
@@ -43,12 +42,18 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
+  // const collectionRef = db.collection('users');
+  // const collectionSnapshot = await collectionRef.get();
+  //  collectionSnapshot.docs.map((doc) => doc.data())
+
+
+  // const userRef = db.collection('users').doc(`${userAuth.uid}`);
   const userRef = db.doc(`/users/${userAuth.uid}`);
   const snapShot = await userRef.get();
- 
+  
 
   if (!snapShot.exists) {
-    // telling stating what kind of object we want to create if it does not exists
+    // stating what kind of object we want to create if it does not exists
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -70,6 +75,49 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const cnvertCollectionsSnapshotToMap = collectionsSnapshot => {
+
+  const transformedCollection = collectionsSnapshot.docs.map(doc => {
+
+    const {title, items} = doc.data();
+
+    return {
+
+      routeName: encodeURI (title.toLowerCase ()),
+      id: doc.id,
+      title,
+      items
+    }
+ 
+  })
+ return transformedCollection.reduce((accumulator, collection) => {
+
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+
+  }, {})
+}
+
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+
+   const collectionRef = db.collection(collectionKey);
+
+
+   const batch = db.batch();
+   objectsToAdd.forEach(obj => {
+
+    const newDocRef = collectionRef.doc();
+
+    batch.set(newDocRef, obj);
+   })
+
+   return await  batch.commit();
+}
+
+
+export const auth = firebase.auth();
+export const db = firebase.firestore();
 export default firebase;
 
 // ==============================================================================

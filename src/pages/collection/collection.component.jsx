@@ -8,7 +8,7 @@ import './collection.style.scss';
 
 const CollectionPage = ({collection})  => {
   const {title, items} = collection;
-    console.log( {collection})
+  //  console.log( {collection})
 // const {history, location, cmatch} = props;
 //history.push  --&&-- match.params.collectionId(any)  --&&--  location.pathName
 

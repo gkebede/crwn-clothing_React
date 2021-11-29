@@ -8,7 +8,14 @@ import "./App.css";
 import ContactUs from "./components/contact.component";
 import CheckoutPage from './pages/checkout/checkout.component';
 import HomePage from "./pages/homepage/homepage.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
+
+import {
+           auth
+          ,createUserProfileDocument 
+        
+        } from "./firebase/firebase.utils";
+
 import ShopePage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
@@ -30,7 +37,8 @@ class App extends React.Component {
   
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+        const userRef = await createUserProfileDocument(userAuth
+          );
          
         userRef.onSnapshot((snapshot) => {
 
@@ -42,14 +50,13 @@ class App extends React.Component {
               ...snapshot.data(),
          });
 
-         console.log(this.state);
-
         });
       }
 
      // this.setState({ currentUser: userAuth });
      setCurrentUser(userAuth);
-    });
+     
+     });
   }
 
   componentWillUnmount() {
