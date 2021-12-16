@@ -2,18 +2,16 @@ import React from "react";
 import { Route } from "react-router";
 import { connect } from 'react-redux';
 
-import WithSpinner from '../../components/with-spinner/with-spinner.component';
  
 
-import CollectionOverview from '../../components/collection-overview/collection-overview.component';
-import CollectionPage from "../collection/collection.component";
+import CollectionOverviewContainer from '../../components/collection-overview/collection-overview.container';
+import CollectionPageContainer from "../collection/collection.container";
 
-import {db, cnvertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
+//import {db, cnvertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
-import updateCollections from '../../redux/shop/shop.action';
+import {fetchCollectionsStartAsync} from '../../redux/shop/shop.action'
 
-const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
-const CollectionPageWtihSpinner = WithSpinner(CollectionPage);
+
 
     // ShopePage component display using Route thus it has 1-history 2-match and 3-location
    // const {history, location, match} = props;
@@ -21,38 +19,27 @@ const CollectionPageWtihSpinner = WithSpinner(CollectionPage);
 
      class ShopePage extends React.Component {
      
-          state = {loading: true}
-          unSubscribeFromSnapshot = null;
-
           componentDidMount() {
 
-               const {updateCollections} = this.props;
-               const collectionRef = db.collection('collections');
+            const { fetchCollectionsStartAsync } = this.props;
 
-             this.unSubscribeFromSnapshot =  collectionRef.onSnapshot(async (snapshot) => {
-
-                      const collectionsMap =   cnvertCollectionsSnapshotToMap(snapshot)
-
-                      updateCollections(collectionsMap);
-
-                      this.setState({loading: false})
-
-               })
+            fetchCollectionsStartAsync();
 
           }
 
    render() {
 
-     const {match} = this.props;
-     const { loading } = this.state;
+     const { match } = this.props;
         return (
           <div className= 'shop-page'>
-               <Route exact path={`${match.path}`} 
-                 render = {(props) => < CollectionOverviewWithSpinner isLoading={loading} {...props} />}
-               />
-               <Route  path={`${match.path}/:collectionId`}
-                 render = {(props) => < CollectionPageWtihSpinner isLoading={loading} {...props} />}
+             <Route  path={`${match.path}`}
+                component= {CollectionOverviewContainer}
                  />
+               <Route  path={`${match.path}/:collectionId`}
+                 
+                 component= {CollectionPageContainer}
+               />
+              
           </div>
         );
    }
@@ -60,11 +47,14 @@ const CollectionPageWtihSpinner = WithSpinner(CollectionPage);
 
 }
 
+
+
+// instance of collections, isFetching, and errorMessage == fetchCollectionsStartAsync
 const mapDispatchToProps = dispatch => ({
 
-     updateCollections: collectionsMap => 
-      dispatch(updateCollections(collectionsMap))
-     
+   //  updateCollections: collectionsMap => 
+    //  dispatch(updateCollections(collectionsMap))
+     fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
 
 })
 
